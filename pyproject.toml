@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "torch-crfsuite"
+version = "0.1.0"
+description = "Pure-PyTorch rewrite of crfsuite and python-crfsuite with ONNX export"
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+    "torch>=2.0.0",
+]
+
+[project.optional-dependencies]
+onnx = [
+    "onnx>=1.14.0",
+    "onnxruntime>=1.16.0",
+    "numpy>=1.24.0",
+]
+crfsuite = [
+    "python-crfsuite>=0.9.9",
+]
+dev = [
+    "pytest>=7.0",
+    "onnx>=1.14.0",
+    "onnxruntime>=1.16.0",
+    "numpy>=1.24.0",
+]
+
+[project.scripts]
+crfsuite2onnx = "torch_crfsuite.convert_crfsuite:main"
+
+[tool.setuptools.packages.find]
+include = ["torch_crfsuite*"]
